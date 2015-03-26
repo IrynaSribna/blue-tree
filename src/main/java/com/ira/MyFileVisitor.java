@@ -11,18 +11,14 @@ public class MyFileVisitor extends SimpleFileVisitor<Path> {
     private int depth = 1;
 
     public FileVisitResult visitFile(Path path, BasicFileAttributes fileAttributes) {
-        for (int i = 0; i < depth; i++) {
-            System.out.print(" ");
-        }
+        printDash();
         System.out.println("|---" + path.getFileName());
 
         return FileVisitResult.CONTINUE;
     }
 
     public FileVisitResult preVisitDirectory(Path path, BasicFileAttributes fileAttributes) {
-        for (int i = 0; i < depth; i++) {
-            System.out.print(" ");
-        }
+        printDash();
         System.out.print("|---");
 
         System.out.println(path.getFileName());
@@ -35,5 +31,9 @@ public class MyFileVisitor extends SimpleFileVisitor<Path> {
         return FileVisitResult.CONTINUE;
     }
 
-
+    private void printDash() {
+        for (int i = 0; i < depth; i++) {
+            System.out.print(" ");
+        }
+    }
 }
